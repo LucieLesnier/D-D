@@ -1,12 +1,12 @@
 package donjon;
 
-public class Magicien{
+public class Wizard{
 
 	String name;
 	int life;
 	int power;
 	Spell spell;
-	public Magicien(String name, int life, int power, Spell spell) {
+	public Wizard(String name, int life, int power, Spell spell) {
 		super();
 		this.name = name;
 		this.life = life;
@@ -16,18 +16,18 @@ public class Magicien{
 
 	int potion;
 
-	public Magicien(String name, int life, int power) {
+	public Wizard(String name, int life, int power) {
 		super();
 		this.name = name;
 		this.life = life;
 		this.power = power;
 	}
-	public Magicien(String name) {
+	public Wizard(String name) {
 		super();
 		this.name = name;
 	}
 
-	public Magicien() {
+	public Wizard() {
 		super();
 	}
 

@@ -1,6 +1,6 @@
 package donjon;
 
-public class Guerrier {
+public class Warrior {
 
 	String name;
 	int life;
@@ -15,7 +15,7 @@ public class Guerrier {
 		this.weapon = weapon;
 	}
 
-	public Guerrier(String name, int life, int power, Weapon weapon) {
+	public Warrior(String name, int life, int power, Weapon weapon) {
 		super();
 		this.name = name;
 		this.life = life;
@@ -23,19 +23,19 @@ public class Guerrier {
 		this.weapon = weapon;
 	}
 
-	public Guerrier(String name, int life, int power) {
+	public Warrior(String name, int life, int power) {
 		this.name = name;
 		this.life = life;
 		this.power = power;
 
 	}
 
-	public Guerrier(String name) {
+	public Warrior(String name) {
 		super();
 		this.name = name;
 	}
 
-	public Guerrier() {
+	public Warrior() {
 		super();
 	}
 

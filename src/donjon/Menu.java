@@ -6,14 +6,14 @@ import java.util.Scanner;
 
 public class Menu {
 	Scanner sc;
-	List<Magicien> mageCreated;
-	List<Guerrier> guerrierCreated;
+	List<Wizard> mageCreated;
+	List<Warrior> warriorCreated;
 
 	public Menu(Scanner sc) {
 		super();
 		this.sc = sc;
-		this.mageCreated = new ArrayList<Magicien>();
-		this.guerrierCreated = new ArrayList<Guerrier>();
+		this.mageCreated = new ArrayList<Wizard>();
+		this.warriorCreated = new ArrayList<Warrior>();
 
 	}
 
@@ -71,7 +71,7 @@ public class Menu {
 		else if (choice == 4) {
 			System.out.println("Voici vos joueurs");
 			System.out.println(this.mageCreated.toString());
-			System.out.println(this.guerrierCreated.toString());
+			System.out.println(this.warriorCreated.toString());
 
 		}
 
@@ -97,11 +97,11 @@ public class Menu {
 		/**/
 		System.out.println(" ");
 
-		int pvAleatoire = 5 + (int) (Math.random() * ((10 - 5) + 1)); /* Répartissions aléatoires des points de vie */
-		int powerAleatoire = 5
+		int pvRandom = 5 + (int) (Math.random() * ((10 - 5) + 1)); /* Répartissions aléatoires des points de vie */
+		int powerRandom = 5
 				+ (int) (Math.random() * ((10 - 5) + 1)); /* Répartissions aléatoire des points d'attaque */
-		System.out.println("''''''''''" +nameOfWarrior + " ta vie sera de " + pvAleatoire
-				+ " points et ta force d'attaque de " + powerAleatoire + " points ''''''''");
+		System.out.println("''''''''''" +nameOfWarrior + " ta vie sera de " + pvRandom
+				+ " points et ta force d'attaque de " + powerRandom + " points ''''''''");
 
 		/////////////////////// Création des armes
 
@@ -153,12 +153,14 @@ public class Menu {
 				+ " points, pour protection : " + weapon.protection + " points, pour resistance : " + weapon.resistance
 				+ " points, et tu auras : " + weapon.shield + " bouclier");
 		System.out.println("''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''");
-		Guerrier guerrier = new Guerrier(nameOfWarrior, pvAleatoire, powerAleatoire,
+		Warrior warrior = new Warrior(nameOfWarrior, pvRandom, powerRandom,
 				weapon); /* Création du nouveau personnage */
-		this.guerrierCreated.add(guerrier);
+		this.warriorCreated.add(warrior);
 	}
 
 	public void mageCreated() {
+		
+		
 		/* Création du nom du personnage */
 		System.out.println("Bienvenue à toi, jeune mage");
 		System.out.println("Choisis maintenant le nom de ton personnage");
@@ -168,12 +170,12 @@ public class Menu {
 
 		System.out.println("Bienvenue à toi " + nameOfMage + " le mage");
 		/**/
-		int pvAleatoire = 3 + (int) (Math.random() * ((6 - 3) + 1)); /* Répartissions aléatoires des points de vie */
-		int powerAleatoire = 8
+		int pvRandom = 3 + (int) (Math.random() * ((6 - 3) + 1)); /* Répartissions aléatoires des points de vie */
+		int powerRandom = 8
 				+ (int) (Math.random() * ((15 - 8) + 1)); /* Répartissions aléatoire des points d'attaque */
 
-		System.out.println(nameOfMage + " ta force de vie sera de " + pvAleatoire + " points et ta force d'attaque de "
-				+ powerAleatoire + " points");
+		System.out.println(nameOfMage + " ta force de vie sera de " + pvRandom + " points et ta force d'attaque de "
+				+ powerRandom + " points");
 
 		// Création des armes aléatoires int powerOf = 5 + (int) (Math.random() * ((20 -
 		// 5) + 1));
@@ -230,7 +232,7 @@ public class Menu {
 		} else {
 			spell = whoAmI;
 		}
-		Magicien mage = new Magicien(nameOfMage, pvAleatoire, powerAleatoire,
+		Wizard mage = new Wizard(nameOfMage, pvRandom, powerRandom,
 				spell); /* Création du nouveau personnage */
 		this.mageCreated.add(mage);
 		System.out.println(
