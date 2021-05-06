@@ -1,6 +1,12 @@
+/**@author lesnierl **/
+
+/**@param
+ *
+ */
 package donjon;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -36,26 +42,20 @@ public class Menu {
 		System.out
 				.println("''''''''''''''''''''''''''''''''''''''||'\\\\//'||''''''''''''''''''''''''''''''''''''''''");
 		System.out.println("''''''''''''''''''''''''''''''''''''''||'MENU'||''''''''''''''''''''''''''''''''''''''''");
-		System.out.println("''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''");
-		System.out.println("''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''");
 		// MENU DECO
 		System.out.println("''''''''''''''''''''''''''''''''''''''''Bonjour!''''''''''''''''''''''''''''''''''''''''");
-		System.out.println("''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''");
 		System.out.println("Pour créer un guerrier tapez 1, pour un mage tapez 2, si vous souhaitez fuir, tapez 3");
 		System.out.println("Vous pouvez également affiché vos joueurs en tapant 4!");
-		int choice = sc.nextInt();
+		int choice = askInt();
 		/**/
 
 		/* Condition selon le choix du joueur */
 
 		if (choice == 1) {
 
-
 			warriorCreated();
 			System.out.println(
 					"''''''''''''''''''''''''''''''''''''Bonne chance !''''''''''''''''''''''''''''''''''''''");
-			System.out.println(
-					"''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''");
 			System.out.println(" ");
 		}
 
@@ -81,6 +81,18 @@ public class Menu {
 		}
 	}
 
+	private int askInt() {
+		while (true) {
+			try {
+				return sc.nextInt();
+			} catch (InputMismatchException e) {
+				System.out.println("Veuillez entré un numéro");
+
+			}
+
+		}
+	}
+
 	public void warriorCreated() {
 
 		System.out
@@ -90,17 +102,14 @@ public class Menu {
 		String create = sc.next();
 		String nameOfWarrior = create;
 		/* Création du nom du personnage */
-		System.out.println(" ");
 		System.out.println(
 				"''''''''''''''''''''''''Bienvenue à toi'''" + nameOfWarrior + "'''le guerrier'''''''''''''''''''''''");
-		System.out.println("'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''");
 		/**/
 		System.out.println(" ");
 
 		int pvRandom = 5 + (int) (Math.random() * ((10 - 5) + 1)); /* Répartissions aléatoires des points de vie */
-		int powerRandom = 5
-				+ (int) (Math.random() * ((10 - 5) + 1)); /* Répartissions aléatoire des points d'attaque */
-		System.out.println("''''''''''" +nameOfWarrior + " ta vie sera de " + pvRandom
+		int powerRandom = 5 + (int) (Math.random() * ((10 - 5) + 1)); /* Répartissions aléatoire des points d'attaque */
+		System.out.println("''''''''''" + nameOfWarrior + " ta vie sera de " + pvRandom
 				+ " points et ta force d'attaque de " + powerRandom + " points ''''''''");
 
 		/////////////////////// Création des armes
@@ -148,7 +157,6 @@ public class Menu {
 		} else {
 			weapon = vegetable;
 		}
-		System.out.println("''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''");
 		System.out.println("Ton arme sera : " + weapon.name + " qui aura pour puissance : " + weapon.power
 				+ " points, pour protection : " + weapon.protection + " points, pour resistance : " + weapon.resistance
 				+ " points, et tu auras : " + weapon.shield + " bouclier");
@@ -159,8 +167,7 @@ public class Menu {
 	}
 
 	public void mageCreated() {
-		
-		
+
 		/* Création du nom du personnage */
 		System.out.println("Bienvenue à toi, jeune mage");
 		System.out.println("Choisis maintenant le nom de ton personnage");
@@ -171,8 +178,7 @@ public class Menu {
 		System.out.println("Bienvenue à toi " + nameOfMage + " le mage");
 		/**/
 		int pvRandom = 3 + (int) (Math.random() * ((6 - 3) + 1)); /* Répartissions aléatoires des points de vie */
-		int powerRandom = 8
-				+ (int) (Math.random() * ((15 - 8) + 1)); /* Répartissions aléatoire des points d'attaque */
+		int powerRandom = 8 + (int) (Math.random() * ((15 - 8) + 1)); /* Répartissions aléatoire des points d'attaque */
 
 		System.out.println(nameOfMage + " ta force de vie sera de " + pvRandom + " points et ta force d'attaque de "
 				+ powerRandom + " points");
@@ -232,14 +238,14 @@ public class Menu {
 		} else {
 			spell = whoAmI;
 		}
-		Wizard mage = new Wizard(nameOfMage, pvRandom, powerRandom,
-				spell); /* Création du nouveau personnage */
+		Wizard mage = new Wizard(nameOfMage, pvRandom, powerRandom, spell); /* Création du nouveau personnage */
 		this.mageCreated.add(mage);
 		System.out.println(
 				"Ton sort : " + spell.name + " , sa puissance sera de " + spell.power + " points , sa portée de : "
 						+ spell.scope + " mètres " + "le nombre de potion que tu as : " + spell.potion);
 		System.out.println("Bonne chance !");
-		System.out.println("'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''");
+		System.out.println(
+				"'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''");
 
 	}
 

@@ -1,10 +1,7 @@
 package donjon;
 
-public class Warrior {
+public class Warrior extends Personnages {
 
-	String name;
-	int life;
-	int power;
 	Weapon weapon;
 
 	public Weapon getWeapon() {
@@ -16,23 +13,19 @@ public class Warrior {
 	}
 
 	public Warrior(String name, int life, int power, Weapon weapon) {
-		super();
-		this.name = name;
-		this.life = life;
-		this.power = power;
+		super(name, life, power);
+
 		this.weapon = weapon;
 	}
 
 	public Warrior(String name, int life, int power) {
-		this.name = name;
-		this.life = life;
-		this.power = power;
+		super(name, life, power);
 
 	}
 
 	public Warrior(String name) {
 		super();
-		this.name = name;
+
 	}
 
 	public Warrior() {
@@ -41,33 +34,9 @@ public class Warrior {
 
 	public String toString() {
 		String newLine = System.getProperty("line.separator");
-		return "Ton nom : " + name + " le guerrier " + newLine + "Ta vie : " + life + newLine
-				+ "Ta force d'attaque : " + power + newLine;
+		return "Ton nom : " + getName() + " le guerrier " + newLine + "Ta vie : " + getLife() + newLine
+				+ "Ta force d'attaque : " + getPower() + newLine;
 
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getLife() {
-		return life;
-	}
-
-	public void setLife(int life) {
-		this.life = life;
-	}
-
-	public int getPower() {
-		return power;
-	}
-
-	public void setPower(int power) {
-		this.power = power;
 	}
 
 }

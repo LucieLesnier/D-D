@@ -1,6 +1,6 @@
 package donjon;
 
-public class Weapon {
+public class Weapon{
 	String name;
 	int resistance;
 	int protection;
