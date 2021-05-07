@@ -6,35 +6,30 @@
 package donjon;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
 	Scanner sc;
-	List<Wizard> mageCreated;
-	List<Warrior> warriorCreated;
+	List<Personnages> Perso;
 
 	public Menu(Scanner sc) {
 		super();
 		this.sc = sc;
-		this.mageCreated = new ArrayList<Wizard>();
-		this.warriorCreated = new ArrayList<Warrior>();
-
+		this.Perso = new ArrayList<Personnages>();
 	}
-
 	static boolean exitDonjon = false;
 
 	public void exit() {
 		this.exitDonjon = true;
 	}
-
 	public void display() {
 		do {
 			displayMainMenu();
 		} while (exitDonjon != true);
 	}
-
 	public void displayMainMenu() {
 		/* Premier choix pour la création du personnage */
 		System.out
@@ -45,12 +40,10 @@ public class Menu {
 		// MENU DECO
 		System.out.println("''''''''''''''''''''''''''''''''''''''''Bonjour!''''''''''''''''''''''''''''''''''''''''");
 		System.out.println("Pour créer un guerrier tapez 1, pour un mage tapez 2, si vous souhaitez fuir, tapez 3");
-		System.out.println("Vous pouvez également affiché vos joueurs en tapant 4!");
+		System.out.println("Vous pouvez également affiché vos joueurs en tapant 4, modifier vos joueurs en tapant 5");
 		int choice = askInt();
 		/**/
-
 		/* Condition selon le choix du joueur */
-
 		if (choice == 1) {
 
 			warriorCreated();
@@ -58,38 +51,36 @@ public class Menu {
 					"''''''''''''''''''''''''''''''''''''Bonne chance !''''''''''''''''''''''''''''''''''''''");
 			System.out.println(" ");
 		}
-
 		else if (choice == 2) {
 			mageCreated();
 		}
-
 		else if (choice == 3) {
 			exit();
 			System.out.println("''''''''''''''''''''''''''''''''''Vous avez quitté le jeu'''''''''''''''''''''''");
 		}
-
 		else if (choice == 4) {
 			System.out.println("Voici vos joueurs");
-			System.out.println(this.mageCreated.toString());
-			System.out.println(this.warriorCreated.toString());
 
+			System.out.println(this.Perso.toString());
+
+		} else if (choice == 5) {
+			System.out.println(this.Perso.toString());
+			changeHeroes();
 		}
-
 		else {
-
 			System.out.println("Choisis");
 		}
 	}
-
 	private int askInt() {
 		while (true) {
 			try {
-				return sc.nextInt();
+				int catchInt = sc.nextInt();
+				sc.nextLine();
+				return catchInt;
 			} catch (InputMismatchException e) {
 				System.out.println("Veuillez entré un numéro");
-
+				sc.nextLine();
 			}
-
 		}
 	}
 
@@ -163,7 +154,7 @@ public class Menu {
 		System.out.println("''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''");
 		Warrior warrior = new Warrior(nameOfWarrior, pvRandom, powerRandom,
 				weapon); /* Création du nouveau personnage */
-		this.warriorCreated.add(warrior);
+		this.Perso.add(warrior);
 	}
 
 	public void mageCreated() {
@@ -239,14 +230,66 @@ public class Menu {
 			spell = whoAmI;
 		}
 		Wizard mage = new Wizard(nameOfMage, pvRandom, powerRandom, spell); /* Création du nouveau personnage */
-		this.mageCreated.add(mage);
+		this.Perso.add(mage);
 		System.out.println(
 				"Ton sort : " + spell.name + " , sa puissance sera de " + spell.power + " points , sa portée de : "
 						+ spell.scope + " mètres " + "le nombre de potion que tu as : " + spell.potion);
 		System.out.println("Bonne chance !");
 		System.out.println(
 				"'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''");
+		/////// Modifications des personnages
+		// Je veux pouvoir modifier les infos de mon personnage lorsque j'appuie sur
+		/////// éditer
+		// this.mageCreated.indexOf(mageCreated);
 
+		// System.out.println(mage);
+
+	}
+
+	public void displayAll() {
+		int index = 0;
+		for (Personnages p : Perso) {
+			
+			System.out.println(index + " - " + p.getName());
+			
+			index++;
+		}
+		System.out.println("Si vous souhaitez supprimé un personnage, séléctionné l'index et tapez 'delete' ");
+	}
+
+	public void changeHeroes() {
+		this.displayAll();
+
+		int choice = sc.nextInt();
+		System.out.println("Vous avez séléctionné l'élement " + choice + " tapez le nom que vous souhaitez définir");
+		Personnages a = Perso.get(choice);
+		int index = 0;
+	
+		 
+		a.setName(sc.nextLine());
+		if(a instanceof Wizard ) {
+		System.out.println("Votre personnage devient donc " + a.getName() + " le magicien");
+		}else {
+			System.out.println("Votre personnage devient donc " + a.getName() + " le guerrier");
+		}
+		
+	}
+	public void deleteHero() {
+		this.displayAll();
+		
+		Iterator remove = Perso.iterator();
+		int choice = sc.nextInt();
+	if(choice == 000) {
+			
+		
+		String choiceRemove = sc.nextLine();
+		System.out.println("Vous avez séléctionné l'élement " + choice + " tapez delete");
+		if(choiceRemove == "delete") {
+			remove.remove();
+		} else {
+			changeHeroes();
+		}
+	}
 	}
 
 }
