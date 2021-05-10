@@ -1,4 +1,4 @@
-package donjon;
+package equipment;
 
 public class Spell {
 	String name;
@@ -9,14 +9,14 @@ public class Spell {
 		this.name = name;
 		this.power = power;
 		this.scope = scope;
-		this.potion = potion;
+		this.setPotion(potion);
 	}
 	@Override
 	public String toString() {
 		String newLine = System.getProperty("line.separator");
-		return "Le sort : " + name + newLine + "Sa puissance" + power + newLine + "Sa portée :" + scope + "mètres" + newLine + "Le nombre de potion :" + potion;
+		return "Le sort : " + name + newLine + "Sa puissance" + power + newLine + "Sa portée :" + scope + "mètres" + newLine + "Le nombre de potion :" + getPotion();
 	}
-	int potion;
+	private int potion;
 	public Spell(String name, int power, int scope) {
 		super();
 		this.name = name;
@@ -40,6 +40,12 @@ public class Spell {
 	}
 	public void setScope(int scope) {
 		this.scope = scope;
+	}
+	public int getPotion() {
+		return potion;
+	}
+	public void setPotion(int potion) {
+		this.potion = potion;
 	}	
 
 }

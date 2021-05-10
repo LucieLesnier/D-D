@@ -1,6 +1,6 @@
-package donjon;
+package personnages;
 
-abstract class Personnages {
+public abstract class Personnages {
 	private String name;
 	private int life;
 	private int power;

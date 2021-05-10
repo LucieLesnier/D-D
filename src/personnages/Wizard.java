@@ -1,4 +1,6 @@
-package donjon;
+package personnages;
+
+import equipment.Spell;
 
 public class Wizard extends Personnages {
 

@@ -1,20 +1,20 @@
-package donjon;
+package equipment;
 
 public class Weaponry {
 
-	private int name;
-	private int power;
+	 protected String name;
+	 int power;
 
-	public Weaponry(int name, int power) {
-		super();
+	public Weaponry(String name, int power) {
 		this.name = name;
+		this.power = power;
 	}
 
-	public int getName() {
+	public String getName() {
 		return name;
 	}
 
-	public void setName(int name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 

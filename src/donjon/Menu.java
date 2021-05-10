@@ -1,15 +1,19 @@
+package donjon;
+
 /**@author lesnierl **/
 
-/**@param
- *
- */
-package donjon;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+
+import equipment.Spell;
+import equipment.Weapon;
+import personnages.Personnages;
+import personnages.Warrior;
+import personnages.Wizard;
 
 public class Menu {
 	Scanner sc;
@@ -146,9 +150,9 @@ public class Menu {
 		} else {
 			weapon = vegetable;
 		}
-		System.out.println("Ton arme sera : " + weapon.name + " qui aura pour puissance : " + weapon.power
-				+ " points, pour protection : " + weapon.protection + " points, pour resistance : " + weapon.resistance
-				+ " points, et tu auras : " + weapon.shield + " bouclier");
+		System.out.println("Ton arme sera : " + weapon.getName() + " qui aura pour puissance : " + weapon.getPower()
+				+ " points, pour protection : " + weapon.getProtection() + " points, pour resistance : " + weapon.getResistance()
+				+ " points, et tu auras : " + weapon.getShield() + " bouclier");
 		System.out.println("''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''");
 		Warrior warrior = new Warrior(nameOfWarrior, pvRandom, powerRandom,
 				weapon); /* Création du nouveau personnage */
@@ -172,8 +176,7 @@ public class Menu {
 		System.out.println(nameOfMage + " ta force de vie sera de " + pvRandom + " points et ta force d'attaque de "
 				+ powerRandom + " points");
 
-		// Création des armes aléatoires int powerOf = 5 + (int) (Math.random() * ((20 -
-		// 5) + 1));
+		// Création des armes aléatoires
 		int power = 5 + (int) (Math.random() * ((20 - 5) + 1));
 		int scope = 5 + (int) (Math.random() * ((20 - 5) + 1));
 		int potion = 0 + (int) (Math.random() * ((5 - 0) + 1));
@@ -230,20 +233,14 @@ public class Menu {
 		Wizard mage = new Wizard(nameOfMage, pvRandom, powerRandom, spell); /* Création du nouveau personnage */
 		this.Perso.add(mage);
 		System.out.println(
-				"Ton sort : " + spell.name + " , sa puissance sera de " + spell.power + " points , sa portée de : "
-						+ spell.scope + " mètres " + "le nombre de potion que tu as : " + spell.potion);
+				"Ton sort : " + spell.getName() + " , sa puissance sera de " + spell.getPower() + " points , sa portée de : "
+						+ spell.getScope() + " mètres " + "le nombre de potion que tu as : " + spell.getPotion());
 		System.out.println("Bonne chance !");
 		System.out.println(
 				"'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''");
-		/////// Modifications des personnages
-		// Je veux pouvoir modifier les infos de mon personnage lorsque j'appuie sur
-		/////// éditer
-		// this.mageCreated.indexOf(mageCreated);
-
-		// System.out.println(mage);
-
+		
 	}
-
+/////// Modifications des personnages
 	public void displayAll() {
 		int index = 0;
 
@@ -276,7 +273,7 @@ public class Menu {
 		}
 
 	}
-
+///////// Modification du nom des personnages
 	public void changeHeroes() {
 		System.out.println("Vous souhaitez modifier vos personnages, séléctionnez l'index que vous souhaitez modifier");
 
@@ -325,30 +322,8 @@ public class Menu {
 
 		this.displayAll();
 
-		//////////// Changement de stats à prévoir
-		/*
-		 *
-		 * 
-		 * } if(a instanceof Wizard && (a.getLife() > 6 || a.getLife() < 3) &&
-		 * a.getLife() !=0) { System.out.println("N'abusez pas, 3 minimum, 6 maximum");
-		 * a.setLife(sc.nextInt()); }else if(a instanceof Wizard && (a.getPower() > 15
-		 * || a.getPower() < 8) && a.getPower() !=0) {
-		 * System.out.println("N'abusez pas, 8 minimum, 15 maximum");
-		 * a.setPower(sc.nextInt()); } else if (a instanceof Warrior && (a.getLife() >
-		 * 10 || a.getLife() < 5) && a.getLife() !=0 ) {
-		 * System.out.println("N'abusez pas, 5 minimum, 10 maximum");
-		 * a.setLife(sc.nextInt()); } else if (a instanceof Warrior && (a.getPower() >
-		 * 10 || a.getPower() < 5) && a.getPower() !=0) {
-		 * System.out.println("N'abusez pas, 5 minimum, 10 maximum");
-		 * a.setPower(sc.nextInt()); }else if (a.getLife() == 0 && a.getPower() == 0) {
-		 * System.out.println("Vos valeurs resteront celles par defaut"); return; }
-		 */
-		///////////////////////////////////////////////////
-
 	}
-
-	///////// Changement de stats à prévoir
-
+//////////Modification de la vie des personnages
 	public void changeLife() {
 
 
@@ -392,7 +367,7 @@ public class Menu {
 		}
 		//this.displayAll();
 	}
-
+//////////Modification de la force d'attaque des personnages
 	public void changePower() {
 		System.out.println("Si vous souhaitez modifier sa force d'attaque, tapez l'index du personnage a modifier, si vous souhaitez les conserver, tapez 2");
 		int choice = sc.nextInt();

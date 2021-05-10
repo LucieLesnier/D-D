@@ -1,17 +1,17 @@
-package donjon;
+package equipment;
 
 public class Weapon{
 	String name;
 	int resistance;
 	int protection;
 	int power;
-	int shield;
+	private int shield;
 
 	@Override
 	public String toString() {
 		String newLine = System.getProperty("line.separator");
 		return "Ton arme : " + name + newLine + "sa résistance : " + resistance  +  " points ," + newLine + "sa protection : " + protection + " points , " + newLine + "son pouvoir : " + power
-				 + newLine +  "et il possede " + shield + " bouclier"+ newLine ;
+				 + newLine +  "et il possede " + getShield() + " bouclier"+ newLine ;
 	}
 
 	public Weapon(String name, int resistance, int protection, int power, int shield) {
@@ -20,7 +20,7 @@ public class Weapon{
 		this.resistance = resistance;
 		this.protection = protection;
 		this.power = power;
-		this.shield = shield;
+		this.setShield(shield);
 	}
 
 	public Weapon(String name, int resistance, int protection, int power) {
@@ -64,11 +64,15 @@ public class Weapon{
 	}
 
 	public int isShield() {
-		return shield;
+		return getShield();
 	}
 
 	public void setShield(int shield) {
 		this.shield = shield;
+	}
+
+	public int getShield() {
+		return shield;
 	}
 
 }

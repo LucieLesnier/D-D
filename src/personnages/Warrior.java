@@ -1,4 +1,6 @@
-package donjon;
+package personnages;
+
+import equipment.Weapon;
 
 public class Warrior extends Personnages {
 
