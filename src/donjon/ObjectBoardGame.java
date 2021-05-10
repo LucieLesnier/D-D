@@ -30,7 +30,18 @@ public class ObjectBoardGame extends Weaponry {
 		lambdaWeapon.add(new ObjectBoardGame("Ta mamie préférée", random()));
 		lambdaWeapon.add(new ObjectBoardGame("Une licorne", random()));
 
+	
+	for (ObjectBoardGame lambdaObject : lambdaWeapon) {
+		System.out.println(lambdaObject.getName() + " " + lambdaObject.getPower());
 	}
+
+
+}
+public int random () {
+int newPower = 1 + (int) (Math.random() * ((3 - 1) + 1));
+return newPower;
+
+}
 
 
 
