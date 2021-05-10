@@ -35,11 +35,9 @@ public class Menu {
 
 	public void displayMainMenu() {
 		/* Premier choix pour la création du personnage */
-		System.out
-				.println("''''''''''''''''''''''''''''''''''''''||\\\\''//||''''''''''''''''''''''''''''''''''''''''");
-		System.out
-				.println("''''''''''''''''''''''''''''''''''''''||'\\\\//'||''''''''''''''''''''''''''''''''''''''''");
+		System.out.println("''''''''''''''''''''''''''''''''''''''==========''''''''''''''''''''''''''''''''''''''''");
 		System.out.println("''''''''''''''''''''''''''''''''''''''||'MENU'||''''''''''''''''''''''''''''''''''''''''");
+		System.out.println("''''''''''''''''''''''''''''''''''''''==========''''''''''''''''''''''''''''''''''''''''");
 		// MENU DECO
 		System.out.println("''''''''''''''''''''''''''''''''''''''''Bonjour!''''''''''''''''''''''''''''''''''''''''");
 		System.out.println("Pour créer un guerrier tapez 1, pour un mage tapez 2, si vous souhaitez fuir, tapez 3");
