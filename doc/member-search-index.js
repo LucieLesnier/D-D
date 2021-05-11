@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"donjon","c":"BoardGame","l":"boardGame()"},{"p":"donjon","c":"BoardGame","l":"BoardGame()","url":"%3Cinit%3E()"},{"p":"donjon","c":"BoardGame","l":"getValue()"},{"p":"donjon","c":"BoardGame","l":"setValue(String)","url":"setValue(java.lang.String)"}]

@@ -8,6 +8,9 @@ public class EnemyRoom extends Enemies{
 		super(name, life, power);
 
 	}
+	public EnemyRoom() {
+		
+	}
 	public void Enemy () {
 		
 	}

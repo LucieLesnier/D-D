@@ -2,7 +2,6 @@ package donjon;
 
 /**@author lesnierl **/
 
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.InputMismatchException;
@@ -18,6 +17,7 @@ import personnages.Wizard;
 public class Menu {
 	Scanner sc;
 	List<Personnages> Perso;
+	BoardGame board = new BoardGame();
 
 	public Menu(Scanner sc) {
 		super();
@@ -46,6 +46,7 @@ public class Menu {
 		System.out.println("''''''''''''''''''''''''''''''''''''''''Bonjour!''''''''''''''''''''''''''''''''''''''''");
 		System.out.println("Pour créer un guerrier tapez 1, pour un mage tapez 2, si vous souhaitez fuir, tapez 3");
 		System.out.println("Vous pouvez également affiché vos joueurs en tapant 4, modifier vos joueurs en tapant 5");
+		System.out.println("Pour commencer une partie, cliquez sur 6");
 		int choice = askInt();
 		/**/
 		/* Condition selon le choix du joueur */
@@ -68,6 +69,10 @@ public class Menu {
 		} else if (choice == 5) {
 			System.out.println(this.Perso.toString());
 			displayAll();
+		} else if (choice == 6) {
+
+			board.boardGame();
+
 		} else {
 			System.out.println("Choisis");
 		}
@@ -151,8 +156,8 @@ public class Menu {
 			weapon = vegetable;
 		}
 		System.out.println("Ton arme sera : " + weapon.getName() + " qui aura pour puissance : " + weapon.getPower()
-				+ " points, pour protection : " + weapon.getProtection() + " points, pour resistance : " + weapon.getResistance()
-				+ " points, et tu auras : " + weapon.getShield() + " bouclier");
+				+ " points, pour protection : " + weapon.getProtection() + " points, pour resistance : "
+				+ weapon.getResistance() + " points, et tu auras : " + weapon.getShield() + " bouclier");
 		System.out.println("''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''");
 		Warrior warrior = new Warrior(nameOfWarrior, pvRandom, powerRandom,
 				weapon); /* Création du nouveau personnage */
@@ -232,14 +237,15 @@ public class Menu {
 		}
 		Wizard mage = new Wizard(nameOfMage, pvRandom, powerRandom, spell); /* Création du nouveau personnage */
 		this.Perso.add(mage);
-		System.out.println(
-				"Ton sort : " + spell.getName() + " , sa puissance sera de " + spell.getPower() + " points , sa portée de : "
-						+ spell.getScope() + " mètres " + "le nombre de potion que tu as : " + spell.getPotion());
+		System.out.println("Ton sort : " + spell.getName() + " , sa puissance sera de " + spell.getPower()
+				+ " points , sa portée de : " + spell.getScope() + " mètres " + "le nombre de potion que tu as : "
+				+ spell.getPotion());
 		System.out.println("Bonne chance !");
 		System.out.println(
 				"'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''");
-		
+
 	}
+
 /////// Modifications des personnages
 	public void displayAll() {
 		int index = 0;
@@ -264,7 +270,7 @@ public class Menu {
 		} else if (choice == 2) {
 			changeLife();
 
-		} else if (choice == 3){
+		} else if (choice == 3) {
 			changePower();
 		} else if (choice == 4) {
 			deleteHero();
@@ -273,28 +279,29 @@ public class Menu {
 		}
 
 	}
+
 ///////// Modification du nom des personnages
 	public void changeHeroes() {
 		System.out.println("Vous souhaitez modifier vos personnages, séléctionnez l'index que vous souhaitez modifier");
 
 		int choice = sc.nextInt();
-		System.out.println("Vous avez séléctionné l'élement " + choice
-				+ " tapez 1 pour changer le nom ");
-		System.out.println("tapez 2 pour modifier la vie, tapez 3 pour la force d'attaque tapez 4 si vous souhaitez annulé ");
+		System.out.println("Vous avez séléctionné l'élement " + choice + " tapez 1 pour changer le nom ");
+		System.out.println(
+				"tapez 2 pour modifier la vie, tapez 3 pour la force d'attaque tapez 4 si vous souhaitez annulé ");
 		Personnages a = Perso.get(choice);
 		int index = 0;
 
 		if (sc.nextInt() == 2) {
 			changeLife();
-		} else if(sc.nextInt() == 3) {
-			changePower();		
+		} else if (sc.nextInt() == 3) {
+			changePower();
 		} else if (sc.nextInt() == 4) {
 			displayAll();
 		} else {
 			System.out.println("Veuillez maintenant entrez le nouveau nom de votre personnage");
-		
-		sc.hasNext();
-		a.setName(sc.next());
+
+			sc.hasNext();
+			a.setName(sc.next());
 		}
 		System.out.println("Si vous souhaitez modifier ses points de vie, tapez 1");
 		System.out.println("Si vous souhaitez modifier son pouvoir, tapez 2, sinon, tapez 3");
@@ -323,86 +330,87 @@ public class Menu {
 		this.displayAll();
 
 	}
+
 //////////Modification de la vie des personnages
 	public void changeLife() {
 
-
-		System.out.println("Si vous souhaitez modifier la vie, tapez l'index du personnage a modifier, si vous souhaitez les conserver, tapez 2");
+		System.out.println(
+				"Si vous souhaitez modifier la vie, tapez l'index du personnage a modifier, si vous souhaitez les conserver, tapez 2");
 		int choice = sc.nextInt();
 		Personnages a = Perso.get(choice);
 		System.out.print(a.getName() + " - " + a.getLife() + " - " + a.getPower());
 		System.out.println("Vous avez séléctionné l'élement " + choice
 				+ " tapez 1 si vous souhaitez modifier la vie si vous souhaitez annulé tapez 2 ");
-		
-		
-		if(sc.nextInt() == 1) {
+
+		if (sc.nextInt() == 1) {
 			System.out.println("Sa vie : ");
 
-		if (Perso instanceof Wizard) {
-			int hpMaxWizard = 6;
-			int hpMinWizard = 3;
-			int newLife = sc.nextInt();
-			if(newLife < hpMinWizard || newLife > hpMaxWizard) {
-				System.out.println("Une valeur entre 3 et 6 svp");
-			} else {
-				a.setLife(newLife);
-				System.out.println(a.getName() + " votre vie sera de : " + a.getLife());
-			}	
-		
-		} else {
-			int hpMaxWarrior = 10;
-			int hpMinWarrior = 5;
-			int newLife = sc.nextInt();
-			if(newLife < hpMinWarrior|| newLife > hpMaxWarrior) {
-				System.out.println("Une valeur entre 5 et 10 svp");
-				newLife = sc.nextInt();
-			} else {
-				a.setLife(newLife);
-				System.out.println(a.getName() + " votre vie sera de : " + a.getLife());
-			}
+			if (Perso instanceof Wizard) {
+				int hpMaxWizard = 6;
+				int hpMinWizard = 3;
+				int newLife = sc.nextInt();
+				if (newLife < hpMinWizard || newLife > hpMaxWizard) {
+					System.out.println("Une valeur entre 3 et 6 svp");
+				} else {
+					a.setLife(newLife);
+					System.out.println(a.getName() + " votre vie sera de : " + a.getLife());
+				}
 
-		}
+			} else {
+				int hpMaxWarrior = 10;
+				int hpMinWarrior = 5;
+				int newLife = sc.nextInt();
+				if (newLife < hpMinWarrior || newLife > hpMaxWarrior) {
+					System.out.println("Une valeur entre 5 et 10 svp");
+					newLife = sc.nextInt();
+				} else {
+					a.setLife(newLife);
+					System.out.println(a.getName() + " votre vie sera de : " + a.getLife());
+				}
+
+			}
 		} else {
 			changeHeroes();
 		}
-		//this.displayAll();
+		// this.displayAll();
 	}
+
 //////////Modification de la force d'attaque des personnages
 	public void changePower() {
-		System.out.println("Si vous souhaitez modifier sa force d'attaque, tapez l'index du personnage a modifier, si vous souhaitez les conserver, tapez 2");
+		System.out.println(
+				"Si vous souhaitez modifier sa force d'attaque, tapez l'index du personnage a modifier, si vous souhaitez les conserver, tapez 2");
 		int choice = sc.nextInt();
 		Personnages a = Perso.get(choice);
 		System.out.print(a.getName() + " - " + a.getLife() + " - " + a.getPower());
 		System.out.println("Vous avez séléctionné l'élement " + choice
 				+ " tapez 1 si vous souhaitez mofidier la force d'attaque ");
-		
-		
-		if(sc.nextInt() == 1) {
-		System.out.println("Sa force d'attaque : ");
-		if (Perso instanceof Wizard) {
-			int powerMaxWizard = 15;
-			int powerMinWizard = 8;
-			int newPower = sc.nextInt();
-			if(newPower < powerMinWizard || newPower > powerMaxWizard) {
-				System.out.println("Une valeur entre 8 et 15 svp");
-				newPower = sc.nextInt();
+
+		if (sc.nextInt() == 1) {
+			System.out.println("Sa force d'attaque : ");
+			if (Perso instanceof Wizard) {
+				int powerMaxWizard = 15;
+				int powerMinWizard = 8;
+				int newPower = sc.nextInt();
+				if (newPower < powerMinWizard || newPower > powerMaxWizard) {
+					System.out.println("Une valeur entre 8 et 15 svp");
+					newPower = sc.nextInt();
+				} else {
+					a.setPower(newPower);
+					System.out.println(a.getName() + "votre nouvelle force d'attaque : " + a.getPower());
+				}
 			} else {
-				a.setPower(newPower);
-				System.out.println(a.getName() + "votre nouvelle force d'attaque : " + a.getPower());
+				int powerMaxWarrior = 10;
+				int powerMinWarrior = 5;
+				int newPower = sc.nextInt();
+				if (newPower < powerMinWarrior || newPower > powerMaxWarrior) {
+					System.out.println("Une valeur entre 5 et 10 svp");
+					newPower = sc.nextInt();
+				} else {
+					a.setPower(newPower);
+					System.out.println(a.getName() + "votre nouvelle force d'attaque : " + a.getPower());
+				}
 			}
 		} else {
-			int powerMaxWarrior = 10;
-			int powerMinWarrior = 5;
-			int newPower = sc.nextInt();
-			if(newPower < powerMinWarrior || newPower > powerMaxWarrior) {
-				System.out.println("Une valeur entre 5 et 10 svp");
-				newPower = sc.nextInt();
-			} else {
-				a.setPower(newPower);
-				System.out.println(a.getName() + "votre nouvelle force d'attaque : " + a.getPower());
-			}
-		}
-		}else {
 			changeHeroes();
 		}
 
